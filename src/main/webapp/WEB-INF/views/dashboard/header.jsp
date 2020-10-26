@@ -76,16 +76,13 @@
         <a id="logo">${user.firstName} ${user.lastName}</a>
         <div id="navbar-right">
             <a class="active" href="<c:url value='/'/>">Strona Główna</a>
-            <a href="<c:url value='/recipes'/>">Dodane posiłki</a>
-            <a href="<c:url value='/plans'/>">Dzienne plany posiłków</a>
-            <a href="<c:url value='/recipes/add'/>">Dodaj posiłek</a>
-            <a href="<c:url value='/recipes/add'/>">Dodaj posiłek do dnia</a>
+            <a href="<c:url value='/search'/>">Wyszukaj posiłek</a>
+            <a href="<c:url value='/profile/meals'/>">Dzisiejsze posiłki szczegółowo</a>
             <a href="<c:url value='/logout'/>">Wyloguj</a>
         </div>
     </div>
     <div style="margin-top:200px;padding:15px 15px 50px;font-size:30px">
     <script>
-        // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
         window.onscroll = function() {scrollFunction()};
 
         function scrollFunction() {

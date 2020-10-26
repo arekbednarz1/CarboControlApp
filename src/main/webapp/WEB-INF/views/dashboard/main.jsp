@@ -8,10 +8,7 @@
                 <i class="fas icon-circle fa-info-circle"></i>
                 <span class="font-weight-bold">Liczba dodanych posiłków: ${recipes_count}</span>
             </div>
-                <div class="alert-item alert-light">
-                    <i class="far icon-calendar fa-calendar-alt"></i>
-                <span class="font-weight-bold">Liczba dodanych dni: ${plans_count}</span>
-            </div>
+
         </div>
     </div>
     <div class="m-4 p-4 border-dashed">

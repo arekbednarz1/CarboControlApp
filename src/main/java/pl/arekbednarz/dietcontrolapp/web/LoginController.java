@@ -18,7 +18,7 @@ public class LoginController
     @GetMapping
     public String prepareLogin()
     {
-        return "login"; // spring security will do the rest
+        return "login";
     }
 }
 

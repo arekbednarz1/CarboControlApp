@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import pl.arekbednarz.dietcontrolapp.entity.Recipe;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
@@ -18,5 +19,10 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     Recipe getOneByIdAndUser_Id(Long recipeId, Long userId);
 
     List<Recipe> findAllByOrderByIdDesc();
+
+    @Query("SELECT r FROM Recipe r WHERE r.name LIKE %?1%")
+     List<Recipe> searchRecipes (String keyword);
+
+    Optional<Recipe> findById(Long id);
 }
 

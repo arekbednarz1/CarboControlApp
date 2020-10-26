@@ -2,35 +2,42 @@ package pl.arekbednarz.dietcontrolapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.arekbednarz.dietcontrolapp.entity.Meals;
-
-import pl.arekbednarz.dietcontrolapp.repository.MealsRepository;
+import pl.arekbednarz.dietcontrolapp.entity.MealHistory;
+import pl.arekbednarz.dietcontrolapp.entity.Recipe;
+import pl.arekbednarz.dietcontrolapp.repository.MealHistoryRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 
 @Service
-public class MealsService {
+public class MealHistoryService {
 
     @Autowired
-    MealsRepository mealsRepository;
+    MealHistoryRepository mealHistoryRepository;
 
-   public List<Meals> listAll(String keyword){
+    public void save (MealHistory meal){
 
-           return mealsRepository.findMealsByName(keyword);
+        mealHistoryRepository.save(meal);
 
-   }
+    }
 
-   public void save (Meals meal){
-       mealsRepository.save(meal);
-   }
+    public void delete(MealHistory mealHistory){
+        mealHistoryRepository.delete(mealHistory);
+    }
+    public Optional<MealHistory> findById(Long id){
+       return mealHistoryRepository.findById(id);
+    }
+    public Optional<MealHistory> findByRecipe(Recipe recipe){
+        return mealHistoryRepository.findByRecipe(Optional.ofNullable(recipe));
+    }
+
+    public List<MealHistory> findByUserId(Long id){
+        return mealHistoryRepository.findByUserId(id);
+    }
 
 
-   public Meals findById(Long id){
-      return mealsRepository.findMealsById(id);
-   }
-       }
+}
 
 
 

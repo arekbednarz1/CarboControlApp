@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,37 +20,29 @@ public class Recipe {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private Integer heavy;
 
-    private Integer carbs;
+    private Double carbs;
 
-    private LocalDateTime created;
+    private LocalDate created;
 
-    private LocalDateTime updated;
+    private LocalDate updated;
 
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "recipe")
-    private List<RecipePlan> recipePlans;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private MealHistory mealHistory;
 
-    public List<RecipePlan> getRecipePlans() {
-        return recipePlans;
-    }
-
-    public void setRecipePlans(List<RecipePlan> recipePlans) {
-        this.recipePlans = recipePlans;
-    }
 
     @PrePersist
     public void prePersist() {
-        created = LocalDateTime.now(); // this field will be autofilled
+        created = LocalDate.now();
     }
 
     @PreUpdate
     public void preUpdate() {
-        updated = LocalDateTime.now();  // this field will be autofilled
+        updated = LocalDate.now();
     }
 
 
@@ -63,7 +56,7 @@ public class Recipe {
                 ", created=" + created +
                 ", updated=" + updated +
                 ", user=" + user +
-                ", recipePlans=" + recipePlans +
+
                 '}';
     }
 }

@@ -3,6 +3,7 @@ package pl.arekbednarz.dietcontrolapp.web.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,9 +16,9 @@ public class RecipeDTO
 
     private String heavy;
 
-    private LocalDateTime created;
+    private LocalDate created;
 
-    private LocalDateTime updated;
+    private LocalDate updated;
 
     private Integer preparationTime;
 
