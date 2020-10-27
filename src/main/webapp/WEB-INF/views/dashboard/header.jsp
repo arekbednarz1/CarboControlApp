@@ -78,6 +78,7 @@
             <a class="active" href="<c:url value='/'/>">Strona Główna</a>
             <a href="<c:url value='/search'/>">Wyszukaj posiłek</a>
             <a href="<c:url value='/profile/meals'/>">Dzisiejsze posiłki szczegółowo</a>
+            <a href="<c:url value='/user_edit'/>">Edycja użytkownika</a>
             <a href="<c:url value='/logout'/>">Wyloguj</a>
         </div>
     </div>

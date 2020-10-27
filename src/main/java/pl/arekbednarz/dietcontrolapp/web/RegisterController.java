@@ -36,7 +36,7 @@ public class RegisterController {
         User user1 = userService.findUserByEmail(user.getEmail());
         if (user1 != null) {
             result.rejectValue("email", "error.user",
-                            "Użytkownik z podanym emailem jest już zarejestrowany.");
+                            "Użytkownik z podanym adresem email jest już zarejestrowany.");
         }
         if (result.hasErrors()) {
             return "registration";

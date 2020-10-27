@@ -44,6 +44,10 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
+    public User findUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
    public User findUserByPasswordBefore(String password){
         return userRepository.findUserByPasswordBefore(password);
     }

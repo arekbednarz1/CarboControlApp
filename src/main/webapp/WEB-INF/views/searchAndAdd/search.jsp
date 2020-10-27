@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 
-    <link rel="stylesheet" type="text/css" href="/static/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/resources/html/css/style2.css" media="all">
 </head>
 <body style="background-color: bisque">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

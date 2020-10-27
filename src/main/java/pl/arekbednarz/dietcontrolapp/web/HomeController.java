@@ -3,13 +3,17 @@ package pl.arekbednarz.dietcontrolapp.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.arekbednarz.dietcontrolapp.entity.MealHistory;
 import pl.arekbednarz.dietcontrolapp.entity.User;
 import pl.arekbednarz.dietcontrolapp.service.RecipeService;
 import pl.arekbednarz.dietcontrolapp.service.UserService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -23,7 +27,7 @@ public class HomeController {
 
 
 
-    @GetMapping("/") // also dashboard controller
+    @GetMapping("/")
     public String LandingPageController(Principal principal, Model model) {
 
         model.addAttribute("logged_user", principal);
@@ -49,7 +53,7 @@ public class HomeController {
 
         model.addAttribute("welcomeMessage", userService.getFirstNameAndTimeOfDay());
 
-        return "search/profile";
+        return "searchAndAdd/profile";
     }
 
     @GetMapping("/profile/meals")
@@ -63,6 +67,29 @@ public class HomeController {
 
         model.addAttribute("welcomeMessage", userService.getFirstNameAndTimeOfDay());
 
-        return "search/profileDet";
+        return "searchAndAdd/profileDet";
     }
+
+    @GetMapping("/user_edit")
+    public String showUser (Principal principal,Model model){
+        User user = userService.findUserByEmail(principal.getName());
+        model.addAttribute("user",user);
+        return "userEdit";
+    }
+
+    @PostMapping("/user_edit")
+    public String editUser (@ModelAttribute @Valid User user, BindingResult result){
+        User user1 = userService.findUserByEmail(user.getEmail());
+        if (result.hasErrors()) {
+            return "userEdit";
+        }
+
+        user1.setFirstName(user.getFirstName());
+        user1.setLastName(user.getLastName());
+        user1.setPassword(user.getPassword());
+        userService.save(user1);
+        return "dashboard/main";
+
+    }
+
 }

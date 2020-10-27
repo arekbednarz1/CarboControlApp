@@ -38,7 +38,7 @@ public class MealsController {
 
     @GetMapping("/search")
         public String show(){
-        return "search/search";
+        return "searchAndAdd/search";
         }
 
     @GetMapping("/searchM")
@@ -51,10 +51,7 @@ public class MealsController {
             model.addAttribute("meal", mealHistory);
             model.addAttribute("dish",mealHistory);
             model.addAttribute("recipe",recipe);
-
-
-
-                return "search/listOfmeals";
+                return "searchAndAdd/listOfmeals";
         }else {
             return "redirect:/addMeal";
         }
@@ -73,14 +70,14 @@ public class MealsController {
         model.addAttribute("recipe",recipe);
 
 
-        return "search/addMeal";
+        return "searchAndAdd/addMeal";
         }
 
 
         @PostMapping("/addMeal")
         public String addMeal(@ModelAttribute Meals meal,@ModelAttribute MealHistory mealHistory, Principal principal,BindingResult result){
         if (result.hasErrors()){
-            return "search/addMeal";
+            return "searchAndAdd/addMeal";
         }
 
         double carbs = meal.getCarbs();
@@ -119,15 +116,19 @@ public class MealsController {
 
 
 
-    @PostMapping("/food_remove")
-    public String bookingForm(@ModelAttribute MealHistory mealHistory,Principal principal){
-        User user = userService.findUserByEmail(principal.getName());
-       Optional<MealHistory> mealHistory1 = mealHistoryService.findByRecipe(mealHistory.getRecipe());
-
-
-         return "redirect:/profile";
-    }
-
+//    @GetMapping("/food/edit")
+//    public String foodEditForm(@ModelAttribute MealHistory mealHistory,Principal principal){
+//        User user = userService.findUserByEmail(principal.getName());
+//       Optional<MealHistory> mealHistory1 = mealHistoryService.findByRecipe(mealHistory.getRecipe());
+//         return "redirect:/profile";
+//    }
+//
+//    public String editFood (@ModelAttribute MealHistory mealHistory, Principal principal){
+//        User user = userService.findUserByEmail(principal.getName());
+//        mealHistoryService.
+//
+//
+//        return "redirect:/profile";
 
 
 
@@ -165,7 +166,7 @@ public class MealsController {
         MealHistory mealHistory1 = new MealHistory();
         Recipe recipe = new Recipe();
 
-        recipe.setCarbs(results);
+        recipe.setCarbs((double)(Math.round(results*100))/100);
         recipe.setCreated(LocalDate.now());
         recipe.setHeavy(weight);
         recipe.setName(mealHistory.getRecipe().getName());
@@ -226,6 +227,10 @@ public class MealsController {
 //            return "redirect:../../recipes";
 //        }
 
+
+
+
+//    testowe
     @RequestMapping("/Madd")
     public void addRecipe ()
     {

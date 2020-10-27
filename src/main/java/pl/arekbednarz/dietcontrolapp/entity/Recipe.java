@@ -31,7 +31,7 @@ public class Recipe {
     @ManyToOne
     private User user;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
     private MealHistory mealHistory;
 
 

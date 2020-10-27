@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/static/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/resources/html/css/style2.css" media="all">
 
 </head>
 <body style="background-color: bisque">
@@ -44,48 +44,19 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                <c:forEach items="${foodConsumedToday}" var="food">
-<%--                    <form:form action="/food_remove" method="post" modelAttribute="mealHistory">--%>
-<%--                        <tr class="d-flex"> <th scope="row" class="col-1">${food.id}</th>--%>
-<%--                        <form:hidden path="recipe" value="${food}"/>--%>
-                        <td>${food.name}</td>
-                        <td>${food.carbs}</td>
+                <c:forEach items="${mealsConsumedToday}" var="food" >
+                <thead><tr class="schedules-content-header"> <th scope="row" class="col-1">${food.type}</th></thead>
+                        <td>${food.recipe.name}</td>
+                        <td>${food.recipe.carbs}</td>
                         <td >${food.heavy}</td>
-<%--                        <td><form:select id = "posiłek" name = "posiłek" path="type">--%>
-<%--                        <form:option value = "Śniadanie">Śniadanie</form:option>--%>
-<%--                        <option value = "Drugie śniadanie">Drugie śniadanie</option>--%>
-<%--                        <option value = "Obiad">Obiad</option>--%>
-<%--                        <option value = "Podwieczorek">Podwieczorek</option>--%>
-<%--                        <option value = "Kolacja">Kolacja</option></form:select>--%>
-<%--                        </td>--%>
 
-<%--                        <td><button type="submit" value="Dodaj do posiłku"/></td>--%>
-<%--                    </form:form>--%>
-
-                </tr>
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-
-<%--<th scope="col">zaznacz</th>--%>
-<%--<th scope="col">Nazwa</th>--%>
-<%--<th scope="col">Węglowodany(g)</th>--%>
-<%--<th scope="col">Waga(g)</th>--%>
-<%--<th scope="col"></th>--%>
-<%--</tr>--%>
-<%--<c:forEach items ="${mealsList}" var="meal">--%>
-<%--<tr class="d-flex"> <th scope="row" class="col-1">${meal.id}</th>--%>
-<%--    <td>${meal.name}</td>--%>
-<%--    <td>${meal.carbs}</td>--%>
-<%--    <td >${meal.heavy}</td>--%>
-<%--    <td class="col-1"><a href="<c:url value="/meals/${meal.id}"/>" class="btn btn-info rounded-0 text-light">Dodaj</a></td>--%>
-<%--</tr>--%>
-<%--</c:forEach>--%>
 
 <div class="updateGoalsAddFood">
     Kliknij aby wyszukać i dodać nowy posiłek:

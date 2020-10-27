@@ -9,7 +9,7 @@ import java.util.List;
 public interface MealsRepository extends JpaRepository<Meals,Long> {
 
 
-//    @Query(value = "select * FROM Meals m where m.name like %:keyword%")
+    @Query(value = "select m FROM Meals m where m.name like %:keyword%")
     List<Meals> findMealsByName (String keyword);
 
     Meals findMealsById(Long id);
