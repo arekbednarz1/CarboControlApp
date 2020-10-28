@@ -28,6 +28,6 @@ public class MealHistory {
     private User user;
 
     @OneToOne(cascade = {CascadeType.ALL})
-    private Recipe recipe;
+    private Recip recip;
 
 }

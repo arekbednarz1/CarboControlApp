@@ -3,8 +3,6 @@
 
 
 <jsp:include page="header.jsp"/>
-
-
 <body style="background-color: bisque">
         <div class="dashboard-alerts">
             <div class="alert-item alert-info">

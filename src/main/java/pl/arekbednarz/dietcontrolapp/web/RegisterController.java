@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.arekbednarz.dietcontrolapp.entity.User;
-import pl.arekbednarz.dietcontrolapp.service.UserService;
+import pl.arekbednarz.dietcontrolapp.service.UserServiceDb;
 
 import javax.validation.Valid;
 
@@ -17,11 +17,11 @@ import javax.validation.Valid;
 @Controller
 public class RegisterController {
 
-    private UserService userService;
+    private UserServiceDb userServiceDb;
 
     @Autowired
-    public RegisterController(UserService userService) {
-        this.userService = userService;
+    public RegisterController(UserServiceDb userServiceDb) {
+        this.userServiceDb = userServiceDb;
     }
 
     @GetMapping("/register")
@@ -33,7 +33,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String registerAction (@ModelAttribute @Valid User user, BindingResult result) {
-        User user1 = userService.findUserByEmail(user.getEmail());
+        User user1 = userServiceDb.findUserByEmail(user.getEmail());
         if (user1 != null) {
             result.rejectValue("email", "error.user",
                             "Użytkownik z podanym adresem email jest już zarejestrowany.");
@@ -46,7 +46,7 @@ public class RegisterController {
         }
         user.setEnable(true);
         user.setSuperUser(0);
-        userService.save(user);
+        userServiceDb.save(user);
         return "redirect:/login";
     }
 }

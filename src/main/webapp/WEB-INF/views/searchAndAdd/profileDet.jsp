@@ -46,8 +46,8 @@
                 <tbody>
                 <c:forEach items="${mealsConsumedToday}" var="food" >
                 <thead><tr class="schedules-content-header"> <th scope="row" class="col-1">${food.type}</th></thead>
-                        <td>${food.recipe.name}</td>
-                        <td>${food.recipe.carbs}</td>
+                        <td>${food.recip.name}</td>
+                        <td>${food.recip.carbs}</td>
                         <td >${food.heavy}</td>
 
                     </tr>

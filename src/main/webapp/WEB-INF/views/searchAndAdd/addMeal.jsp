@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: arkadiusz
@@ -79,7 +78,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/resources/html/css/style2.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/style.css" media="all">
 
 </head>
 <body style="background-color: bisque">
@@ -102,47 +101,46 @@
     <div class="row padding">
         <div class="col-3">
         </div>
-<div class="col-6">
-<div class="card" title="table-card">
-<div class="card-body">
+        <div class="col-6">
+            <div class="card" title="table-card">
+                <div class="card-body">
 
-<form:form method="post" modelAttribute="meal">
-    <div class="container center_div">
-    <div class="col-md-6 form-group">
-    <label>Nazwa:</label>
-    <form:input path="name" type="text" class="form-control" name="name" id="mealName"/>
-    </div>
-    <div class="col-md-6 form-group">
-    <label>Węglowodany:</label>
-    <form:input type="number" min="1" class="form-control" id="carbs" path="carbs"/>
-    </div>
-    <div class="col-md-6 form-group">
-    <label>Waga:</label>
-    <form:input type="number" min="1" class="form-control" id="heavy" path="heavy"/>
-    </div>
-    <form:form method="post" modelAttribute="dish">
-        <form:select path="type">
-            <form:option value="Śniadanie" label="Śniadanie"/>
-            <form:option value="Drugie śniadanie" label="Drugie śniadanie"/>
-            <form:option value="Obiad" label="Obiad"/>
-            <form:option value="Podwieczorek" label="Podwieczorek"/>
-            <form:option value="Kolacja" label="Kolacja"/>
-        </form:select>
-    </form:form>
-        <br>
-    <button type="submit" class="btn btn-secondary">Dodaj</button>
-    </div>
-</form:form>
-    </div>
-    </div>
+                    <form:form method="post" modelAttribute="meal">
+                        <div class="container center_div">
+                            <div class="col-md-6 form-group">
+                                <label>Nazwa:</label>
+                                <form:input path="name" type="text" class="form-control" name="name" id="mealName"/>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Węglowodany:</label>
+                                <form:input type="number" min="1" class="form-control" id="carbs" path="carbs"/>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Waga:</label>
+                                <form:input type="number" min="1" class="form-control" id="heavy" path="heavy"/>
+                            </div>
+                            <form:form method="post" modelAttribute="dish">
+                                <form:select path="type">
+                                    <form:option value="Śniadanie" label="Śniadanie"/>
+                                    <form:option value="Drugie śniadanie" label="Drugie śniadanie"/>
+                                    <form:option value="Obiad" label="Obiad"/>
+                                    <form:option value="Podwieczorek" label="Podwieczorek"/>
+                                    <form:option value="Kolacja" label="Kolacja"/>
+                                </form:select>
+                            </form:form>
+                            <br>
+                            <button type="submit" class="btn btn-secondary">Dodaj</button>
+                        </div>
+                    </form:form>
+                </div>
+            </div>
 
-    </form>
+            </form>
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
+</div>
+</div>
 </div>
 </body>
 
 </html>
-

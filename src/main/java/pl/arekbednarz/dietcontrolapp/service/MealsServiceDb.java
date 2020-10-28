@@ -11,7 +11,7 @@ import java.util.Optional;
 
 
 @Service
-public class MealsService {
+public class MealsServiceDb implements MealService {
 
     @Autowired
     MealsRepository mealsRepository;

@@ -3,6 +3,7 @@ package pl.arekbednarz.dietcontrolapp.entity;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Entity
 @Table(name = "meals")
+@ToString
 public class Meals {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

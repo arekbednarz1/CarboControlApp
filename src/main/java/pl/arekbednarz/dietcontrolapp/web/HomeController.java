@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.arekbednarz.dietcontrolapp.entity.MealHistory;
 import pl.arekbednarz.dietcontrolapp.entity.User;
-import pl.arekbednarz.dietcontrolapp.service.RecipeService;
-import pl.arekbednarz.dietcontrolapp.service.UserService;
+import pl.arekbednarz.dietcontrolapp.service.RecipeServiceDb;
+import pl.arekbednarz.dietcontrolapp.service.UserServiceDb;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -20,10 +20,10 @@ import java.security.Principal;
 @RequestMapping("/")
 public class HomeController {
     @Autowired
-    UserService userService;
+    UserServiceDb userServiceDb;
 
     @Autowired
-    RecipeService recipeService;
+    RecipeServiceDb recipeServiceDb;
 
 
 
@@ -34,9 +34,9 @@ public class HomeController {
 
         if (principal != null)
         {
-            User user = userService.findUserByEmail(principal.getName());
+            User user = userServiceDb.findUserByEmail(principal.getName());
             model.addAttribute("user", user);
-            model.addAttribute("recipes_count", recipeService.getUserRecipesCount(user.getId()));
+            model.addAttribute("recipes_count", recipeServiceDb.getUserRecipesCount(user.getId()));
 
         }
 
@@ -45,41 +45,34 @@ public class HomeController {
 
     @GetMapping("/profile")
     public String profile(Model model){
-        model.addAttribute("foodConsumedToday", userService.foodConsumedToday());
+        model.addAttribute("foodConsumedToday", userServiceDb.foodConsumedToday());
         MealHistory mealHistory = new MealHistory();
         model.addAttribute("mealHistory",mealHistory);
 
-//        model.addAttribute("currentDailyProgressPercentage", analyticsService.percentageToGoal(dailyProgressToGoal, goal));
 
-        model.addAttribute("welcomeMessage", userService.getFirstNameAndTimeOfDay());
+        model.addAttribute("welcomeMessage", userServiceDb.getFirstNameAndTimeOfDay());
 
         return "searchAndAdd/profile";
     }
 
     @GetMapping("/profile/meals")
     public String profileMeals(Model model){
-        model.addAttribute("mealsConsumedToday", userService.mealsConsumedToday());
-//        MealHistory mealHistory = new MealHistory();
-//        model.addAttribute("mealHistory",mealHistory);
-//        model.addAttribute("currentDailyProgressPercentage", analyticsService.percentageToGoal(dailyProgressToGoal, goal));
-
-
-
-        model.addAttribute("welcomeMessage", userService.getFirstNameAndTimeOfDay());
+        model.addAttribute("mealsConsumedToday", userServiceDb.mealsConsumedToday());
+        model.addAttribute("welcomeMessage", userServiceDb.getFirstNameAndTimeOfDay());
 
         return "searchAndAdd/profileDet";
     }
 
     @GetMapping("/user_edit")
     public String showUser (Principal principal,Model model){
-        User user = userService.findUserByEmail(principal.getName());
+        User user = userServiceDb.findUserByEmail(principal.getName());
         model.addAttribute("user",user);
         return "userEdit";
     }
 
     @PostMapping("/user_edit")
     public String editUser (@ModelAttribute @Valid User user, BindingResult result){
-        User user1 = userService.findUserByEmail(user.getEmail());
+        User user1 = userServiceDb.findUserByEmail(user.getEmail());
         if (result.hasErrors()) {
             return "userEdit";
         }
@@ -87,7 +80,7 @@ public class HomeController {
         user1.setFirstName(user.getFirstName());
         user1.setLastName(user.getLastName());
         user1.setPassword(user.getPassword());
-        userService.save(user1);
+        userServiceDb.save(user1);
         return "dashboard/main";
 
     }

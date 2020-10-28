@@ -19,7 +19,7 @@ User
 \/
 
 MealHistory
-recipe
+recip
 user
 weight
 date

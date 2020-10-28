@@ -48,7 +48,7 @@
                 <c:forEach items="${foodConsumedToday}" var="food">
 <%--                    <form:form action="/food_remove" method="post" modelAttribute="mealHistory">--%>
 <%--                        <tr class="d-flex"> <th scope="row" class="col-1">${food.id}</th>--%>
-<%--                        <form:hidden path="recipe" value="${food}"/>--%>
+<%--                        <form:hidden path="recip" value="${food}"/>--%>
                         <td>${food.name}</td>
                         <td>${food.carbs}</td>
                         <td >${food.heavy}</td>
