@@ -12,6 +12,7 @@ public interface MealHistoryService {
    Optional<MealHistory> findById(Long id);
    Optional<MealHistory> findByRecipe(Recip recip);
    List<MealHistory> findByUserId(Long id);
+   List<MealHistory>findAllByType(String type);
 
 
 }

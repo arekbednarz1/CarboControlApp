@@ -18,7 +18,7 @@
     <div class="container pt-4 pb-4">
         <div class="border" style="animation: alternate">
             <div class="container w-25">
-                <form class="padding-small text-center" method="post">
+                <form class="padding-small text-center" method="post" >
                     <h1 class="text-color-darker">Logowanie</h1>
                     <div class="form-group">
                         <input type="text" class="form-control" id="email" name="username" placeholder="podaj adres email">

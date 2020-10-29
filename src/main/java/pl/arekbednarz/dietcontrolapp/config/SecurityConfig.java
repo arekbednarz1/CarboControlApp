@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
+
         http.authorizeRequests()
                 .antMatchers("/app/**").authenticated()
                 .anyRequest().permitAll()
@@ -46,14 +47,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/")
-                .failureUrl("/login")
+                .failureUrl("/login?error")
 
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
-                .deleteCookies()
-                .logoutSuccessUrl("/login")
+                .deleteCookies("JSESSIONID")
+
                 .and()
                 .httpBasic();
     }

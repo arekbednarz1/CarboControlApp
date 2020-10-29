@@ -38,7 +38,10 @@ public class MealHistoryServiceDb implements MealHistoryService{
         return mealHistoryRepository.findByUserId(id);
     }
 
-
+    @Override
+    public List<MealHistory> findAllByType(String type) {
+        return mealHistoryRepository.findAllByType(type);
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package pl.arekbednarz.dietcontrolapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.arekbednarz.dietcontrolapp.entity.MealHistory;
 import pl.arekbednarz.dietcontrolapp.entity.Recip;
@@ -21,6 +22,8 @@ public interface MealHistoryRepository extends JpaRepository<MealHistory,Long> {
    List<MealHistory> findByUserId(Long id);
 
 
+
+   List<MealHistory>findAllByType(String type);
 
 
 }

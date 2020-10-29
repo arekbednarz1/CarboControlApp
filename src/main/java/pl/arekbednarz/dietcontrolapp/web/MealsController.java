@@ -21,6 +21,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -67,9 +68,6 @@ public class MealsController {
         }
 
     }
-
-
-
 
 
         @GetMapping("/addMeal")
@@ -130,45 +128,11 @@ public class MealsController {
 
 
 
-
-//    @GetMapping("/food/edit")
-//    public String foodEditForm(@ModelAttribute MealHistory mealHistory,Principal principal){
-//        User user = userService.findUserByEmail(principal.getName());
-//       Optional<MealHistory> mealHistory1 = mealHistoryService.findByRecipe(mealHistory.getRecipe());
-//         return "redirect:/profile";
-//    }
-//
-//    public String editFood (@ModelAttribute MealHistory mealHistory, Principal principal){
-//        User user = userService.findUserByEmail(principal.getName());
-//        mealHistoryService.
-//
-//
-//        return "redirect:/profile";
-
-
-
-
-
-
-
-
-
-
-//    @GetMapping("/meals/{id}")
-//    public String editRecipe(Model model, @PathVariable Long id, Principal principal)
-//    {
-//        User user = userService.findUserByEmail(principal.getName());
-//        Meals meal = mealsService.findById(id);
-//        model.addAttribute("user", user);
-//        model.addAttribute(meal);
-//        return "search/listOfmeals";
-//    }
-
     @PostMapping("/addToHistory")
     public String addRecipe(@ModelAttribute MealHistory mealHistory, Principal principal) {
         System.out.println(mealHistory.getType());
         System.out.println(mealHistory.getHeavy());
-//        System.out.println(mealHistory.getRecipe().getName());
+
 
         double carbs = mealHistory.getRecip().getCarbs()/100;
         Integer weight =mealHistory.getHeavy();
@@ -207,106 +171,34 @@ public class MealsController {
         return "redirect:/profile";
 
     }
-//
-//        Double carbo = (carbs/100)*heavy;
-//        User user = userService.findUserByEmail(principal.getName());
-//        Meals meals = mealsService.findById(id);
-//        meals = mealsService.findById(id);
-//        Recipe recipe = new Recipe();
-//        recipe.setName(meals.getName());
-//        recipe.setHeavy(heavy);
-//        recipe.setCarbs(carbo);
-//
-//        MealHistory mealHistory1 = new MealHistory();
-//        mealHistory1.setUser(user);
-//        mealHistory1.setRecipe(recipe);
-//        mealHistory1.setHeavy(heavy);
-//        mealHistory1.setCreated(LocalDate.now());
-////        mealHistory1.setType(mealHistory.getType());
-//
-//        recipe.setUser(user);
-//        recipeService.save(recipe);
-//        return "redirect:/profile";
-//    }
-
-
-
-//        @PostMapping("/edit/{id}")
-//        public String editEventPost(@PathVariable Long id, @ModelAttribute @Valid Recipe recipe,
-//                Principal principal, BindingResult result)
-//        {
-//            if(result.hasErrors()){
-//                return "/WEB-INF/views/recipe/addRecipe.jsp";
-//            }
-//            if(recipe.getId()==null){
-//                recipe.setId(id);
-//            }
-//            Optional<Recipe> recipeOld = recipeService.find(id);
-//            User user = userService.findUserByEmail(principal.getName());
-//            recipe.setCreated(recipeOld.orElseThrow().getCreated());
-//            recipe.setUser(user);
-//            recipeService.update(recipe);
-//            return "redirect:../../recipes";
-//        }
 
 
 
 
 
     @GetMapping("/dailyDetail")
-    public String showDaily(Model model, Principal principal){
+    public String showDaily(@ModelAttribute MealHistory mealHistory, Model model, Principal principal) {
         User user = userServiceDb.findUserByEmail(principal.getName());
 
-
-        List<Recip> all = recipeServiceDb.findAllRecipesByUserId(user.getId());
-        String śniadanie1 ="Śniadanie";
-        String drugieSniadanie1 ="Drugie śniadanie";
-        String obiad1 = "Obiad";
-        String podwieczorek1 = "Podwieczorek";
-        String kolacja1 = "Kolacja";
-
-        List<Recip> śniadanie = new ArrayList<>();
-        List<Recip> drugieśniadanie = new ArrayList<>();
-        List<Recip> obiad = new ArrayList<>();
-        List<Recip> podwieczorek = new ArrayList<>();
-        List<Recip> kolacja = new ArrayList<>();
-
-        List<MealHistory> list= mealHistoryServiceDb.findByUserId(user.getId());
-        System.out.println(list);
-        for (Recip r : all){
-           MealHistory mealHistory= r.getMealHistory();
-           if (mealHistory.getType().toString().equals(śniadanie1)){
-                śniadanie.add(r);
-            }else if (mealHistory.getType().equals(drugieSniadanie1)){
-                drugieśniadanie.add(r);
-            }else if (mealHistory.getType()== obiad1){
-                obiad.add(r);
-            }else if (mealHistory.getType()== podwieczorek1){
-                podwieczorek.add(r);
-            }else {
-                kolacja.add(r);
-            }
+//        List<MealHistory> mealHistories = mealHistoryServiceDb.findByUserId(user.getId());
+        List<MealHistory> mealHistories1 =mealHistoryServiceDb.findByUserId(user.getId());
+        List<MealHistory> mealHistories =mealHistoryServiceDb.findByUserId(user.getId()).stream()
+                .filter(s->s.getType().equals(mealHistory.getType()))
+                .collect(Collectors.toList());
+       List<Recip> recipList = new ArrayList<>();
+       Double count = 0.0d;
+        for (MealHistory m : mealHistories){
+           recipList.add(m.getRecip());
+           count+=m.getRecip().getCarbs();
         }
-        System.out.println(all);
 
+        Double wym = (double)((Math.round(count*100))/100)/10;
 
-        model.addAttribute("śniadanie", śniadanie);
-        model.addAttribute("drugieśniadanie", drugieśniadanie);
-        model.addAttribute("obiad", obiad);
-        model.addAttribute("podwieczorek", podwieczorek);
-        model.addAttribute("kolacja", kolacja);
-
-
-        return "searchAndAdd/mealsDetail";
+        model.addAttribute("pos", recipList);
+        model.addAttribute("carb", count);
+        model.addAttribute("wym",wym);
+        return "searchAndAdd/index2";
     }
-
-
-
-
-
-
-
-
 
 //    testowe
     @RequestMapping("/Madd")

@@ -17,6 +17,19 @@
 <body background="../../../resources/html/img/dashboard.jpg">
 <a href="<c:url value='/'/>" class="btn btn-info" role="button">Strona Główna</a>
 <a href="<c:url value="/search"/>" class="btn btn-info" role="button">Wyszukaj kolejny</a>
+    <br>
+<br>
+<br>
+<form:form method="get" modelAttribute="dish" action="/dailyDetail">
+    <form:select path="type" cssClass="custom-select" cssStyle="width: 200px">
+        <form:option value="Śniadanie" label="Śniadanie"/>
+        <form:option value="Drugie śniadanie" label="Drugie śniadanie"/>
+        <form:option value="Obiad" label="Obiad"/>
+        <form:option value="Podwieczorek" label="Podwieczorek"/>
+        <form:option value="Kolacja" label="Kolacja"/>
+            </form:select>
+    <button type="submit" class="btn btn-info">Pokaż</button>
+</form:form>
 
 <h2 class="analytics-main" style="text-align: center">${welcomeMessage}</h2>
 
@@ -42,7 +55,6 @@
                 <tbody>
                 <c:forEach items="${mealsConsumedToday}" var="food" >
                 <tr>
-                <thead><tr class="schedules-content-header"> <th scope="row" class="col-1">${food.type}</th></thead>
                         <td>${food.recip.name}</td>
                         <td>${food.recip.carbs}</td>
                         <td >${food.heavy}</td>

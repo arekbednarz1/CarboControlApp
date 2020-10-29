@@ -41,6 +41,8 @@ public class HomeController {
         return "index";
     }
 
+
+
     @GetMapping("/profile")
     public String profile(Model model) {
         model.addAttribute("foodConsumedToday", userServiceDb.foodConsumedToday());
@@ -54,9 +56,12 @@ public class HomeController {
     }
 
     @GetMapping("/profile/meals")
-    public String profileMeals(Model model) {
+    public String profileMeals(Model model, Principal principal) {
+        User user = userServiceDb.findUserByEmail(principal.getName());
+        MealHistory mealHistory = new MealHistory();
         model.addAttribute("mealsConsumedToday", userServiceDb.mealsConsumedToday());
         model.addAttribute("welcomeMessage", userServiceDb.getFirstNameAndTimeOfDay());
+        model.addAttribute("dish",mealHistory);
 
         return "searchAndAdd/profileDet";
     }

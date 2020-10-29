@@ -22,7 +22,7 @@ public class MealHistory {
 
     private LocalDate created;
 
-    private String Type;
+    private String type;
 
     @ManyToOne
     private User user;

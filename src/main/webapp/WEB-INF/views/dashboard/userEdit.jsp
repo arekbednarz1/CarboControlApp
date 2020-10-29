@@ -51,7 +51,7 @@
                             <form:errors path="email"/>
                         </div>
                         <div class="form-group">
-                            <form:input path="password" type="password" class="form-control" name="password" autocomplete="new-password" maxlength="8"/>
+                            <form:input path="password" type="password" class="form-control" name="password" value="${user.password}"/>
                             <form:errors path="password"/>
                         </div>
                         <button class="btn btn-color rounded-0" type="submit">Edytuj</button>

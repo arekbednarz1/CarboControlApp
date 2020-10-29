@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <div class="topnav" id="myTopnav">
-            <a href="<c:url value='/search'/>" class="active">Strona Główna</a>
+            <a href="<c:url value='/'/>" class="active">Strona Główna</a>
             <a href="<c:url value='/search'/>">Wyszukaj posiłek</a>
             <a href="<c:url value='/profile/meals'/>">Dzisiejsze posiłki szczegółowo</a>
             <a href="<c:url value='/addMeal'/>">Dodaj swój posiłek</a>

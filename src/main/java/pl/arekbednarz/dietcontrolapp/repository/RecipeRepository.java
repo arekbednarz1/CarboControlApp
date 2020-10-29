@@ -26,7 +26,7 @@ public interface RecipeRepository extends JpaRepository<Recip, Long> {
     Optional<Recip> findById(Long id);
 
 
-    @Query("select r FROM Recip r WHERE r.mealHistory.Type = ?1")
+    @Query("select r FROM Recip r WHERE r.mealHistory.type = ?1")
     List<Recip> getRecipsByMealHistory_Type(String type);
 }
 
