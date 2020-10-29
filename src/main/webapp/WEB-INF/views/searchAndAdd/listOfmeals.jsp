@@ -24,7 +24,7 @@
     <div class="row padding">
         <div class="col-12">
             <h2 class="analytics-main" style="text-align: center">Wyniki wyszukiwania</h2>
-            <form:form method="post" modelAttribute="dish" action="/addToHistory">
+
 
             <br>
 
@@ -41,6 +41,7 @@
                 <tbody>
 
                 <c:forEach items="${mealsList}" var="meal">
+                    <form:form method="post" modelAttribute="dish" action="/addToHistory">
                 <tr>
                         <td><form:input path="recip.name" type="text" value="${meal.name}" readonly="true"/></td>
                 <td>
@@ -60,9 +61,9 @@
                     </td>
                     <td><button type="submit" class="btn btn-secondary">Dodaj</button></td>
                 </tr>
-
+                    </form:form>
                 </c:forEach>
-                </form:form>
+
                 </tbody>
             </table>
         </div>
