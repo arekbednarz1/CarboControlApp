@@ -81,13 +81,10 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css" media="all">
 
 </head>
-<body style="background-color: bisque">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Strona główna</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</nav>
+<body background="../../../resources/html/img/dashboard.jpg">
+<a href="<c:url value='/'/>" class="btn btn-info" role="button">Strona Główna</a>
+<a href="<c:url value="/search"/>" class="btn btn-info" role="button">Wyszukaj</a>
+
 
 
 <div class="container-fluid padding">

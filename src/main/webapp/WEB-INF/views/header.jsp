@@ -19,22 +19,12 @@
         <button class="openbtn" onclick="openNav()">Menu</button>
     </div>
 
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
 
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft= "0";
-        }
-    </script>
+    <script type="text/javascript" src="<c:url value="../../resources/html/js/login.js" />"></script>
 
     </body>
 
 </header>
-
 
 
 

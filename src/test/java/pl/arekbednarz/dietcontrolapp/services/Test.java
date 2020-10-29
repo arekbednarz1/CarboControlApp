@@ -16,30 +16,33 @@ public class Test {
         service.getRecipe(315L);
         service.searchRecipes("Marinated Herb Chicken");
 
-        Response<CompactRecipe> response = service.searchRecipes("milk");
+//        Response<CompactRecipe> response = service.searchRecipes("milk");
+//        Response<CompactFood> responseFood = service.searchFoods("milk");
+//
+//        System.out.println(responseFood.getResults().toString());
+//
+//        System.out.println("Total Results: " + response.getTotalResults());
+//        System.out.println("Max Results: " + response.getMaxResults());
+//        System.out.println("Page Number: " + response.getPageNumber());
 
-        System.out.println("Total Results: " + response.getTotalResults());
-        System.out.println("Max Results: " + response.getMaxResults());
-        System.out.println("Page Number: " + response.getPageNumber());
+//        List<CompactRecipe> list = response.getResults();
 
-        List<CompactRecipe> list = response.getResults();
-
-        int i = 1;
-        for(CompactRecipe recipe : list) {
-            System.out.println(recipe.getName());
-            System.out.println(recipe.getId());
-
-
-            Recipe recipe2 = service.getRecipe(recipe.getId());
-            System.out.println(recipe2);
-            System.out.println("==================================================================================================================================");
-            System.out.println(recipe2.getTypes());
-            System.out.println("==================================================================================================================================");
-
-
-            System.out.println(i + ": " + recipe.getId() + " - " + recipe.getName() + ", Description: " + recipe.getDescription());
-            i++;
-        }
+//        int i = 1;
+//        for(CompactRecipe recipe : list) {
+//            System.out.println(recipe.getName());
+//            System.out.println(recipe.getId());
+//
+//
+//            Recipe recipe2 = service.getRecipe(recipe.getId());
+//            System.out.println(recipe2.getIngredients().toString());
+//            System.out.println("==================================================================================================================================");
+//            System.out.println(recipe2.getTypes());
+//            System.out.println("==================================================================================================================================");
+//
+//
+//            System.out.println(i + ": " + recipe.getId() + " - " + recipe.getName() + ", Description: " + recipe.getDescription());
+//            i++;
+//        }
         System.out.println("==================================================================================================================================");
         Recipe recipe = service.getRecipe(84411L);
         System.out.println(recipe.getId() + " - " + recipe.getName() + ", Description: " + recipe.getDescription());
@@ -61,10 +64,10 @@ public class Test {
         System.out.println("==>> Food");
         System.out.println("Food: " + food.getName());
 
-        Response<CompactFood> res = service.searchFoods("zupa", 1);
-        System.out.println("==>> Response");
-        System.out.println("Total: " + res.getTotalResults());
-        System.out.println("Max: " + res.getMaxResults());
-        System.out.println("Size: " + res.getResults().size());
+//        Response<CompactFood> res = service.searchFoods("zupa", 1);
+//        System.out.println("==>> Response");
+//        System.out.println("Total: " + res.getTotalResults());
+//        System.out.println("Max: " + res.getMaxResults());
+//        System.out.println("Size: " + res.getResults().size());
     }
 }

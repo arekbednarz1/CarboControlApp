@@ -24,9 +24,11 @@ html {
   min-height: 100%;
 }
 body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  background: repeat url("../images/image.png");
+  background-image: url("../img/login.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 p {
@@ -47,7 +49,7 @@ background: #EAEAEA;
   text-align: center;
 }
 .btn-color {
-  background-color: var(--link-color);
+  background-color: var(--blue);
   color: var(--light-link-color);
   font-weight: 600;
   font-size: 20px;

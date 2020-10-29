@@ -26,17 +26,15 @@ public class HomeController {
     RecipeServiceDb recipeServiceDb;
 
 
-
     @GetMapping("/")
     public String LandingPageController(Principal principal, Model model) {
 
         model.addAttribute("logged_user", principal);
 
-        if (principal != null)
-        {
+        if (principal != null) {
             User user = userServiceDb.findUserByEmail(principal.getName());
             model.addAttribute("user", user);
-            model.addAttribute("recipes_count", recipeServiceDb.getUserRecipesCount(user.getId()));
+
 
         }
 
@@ -44,10 +42,10 @@ public class HomeController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model){
+    public String profile(Model model) {
         model.addAttribute("foodConsumedToday", userServiceDb.foodConsumedToday());
         MealHistory mealHistory = new MealHistory();
-        model.addAttribute("mealHistory",mealHistory);
+        model.addAttribute("mealHistory", mealHistory);
 
 
         model.addAttribute("welcomeMessage", userServiceDb.getFirstNameAndTimeOfDay());
@@ -56,7 +54,7 @@ public class HomeController {
     }
 
     @GetMapping("/profile/meals")
-    public String profileMeals(Model model){
+    public String profileMeals(Model model) {
         model.addAttribute("mealsConsumedToday", userServiceDb.mealsConsumedToday());
         model.addAttribute("welcomeMessage", userServiceDb.getFirstNameAndTimeOfDay());
 
@@ -64,25 +62,32 @@ public class HomeController {
     }
 
     @GetMapping("/user_edit")
-    public String showUser (Principal principal,Model model){
+    public String showUser(Principal principal, Model model) {
         User user = userServiceDb.findUserByEmail(principal.getName());
-        model.addAttribute("user",user);
-        return "userEdit";
+        model.addAttribute("user", user);
+        return "dashboard/userEdit";
     }
 
     @PostMapping("/user_edit")
-    public String editUser (@ModelAttribute @Valid User user, BindingResult result){
+    public String editUser(@ModelAttribute @Valid User user, BindingResult result) {
         User user1 = userServiceDb.findUserByEmail(user.getEmail());
-        if (result.hasErrors()) {
-            return "userEdit";
-        }
+        if (user.getPassword() != null) {
+            if (result.hasErrors()) {
+                return "dashboard/userEdit";
+            }
 
-        user1.setFirstName(user.getFirstName());
-        user1.setLastName(user.getLastName());
-        user1.setPassword(user.getPassword());
+            user1.setFirstName(user.getFirstName());
+            user1.setLastName(user.getLastName());
+            user1.setPassword(user.getPassword());
+
+
+        } else {
+            user1.setFirstName(user.getFirstName());
+            user1.setLastName(user.getLastName());
+            user1.setPassword(userServiceDb.findUserByEmail(user.getEmail()).getPassword());
+
+        }
         userServiceDb.save(user1);
         return "dashboard/main";
-
     }
-
 }

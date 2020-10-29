@@ -18,14 +18,9 @@
     <link rel="stylesheet" type="text/css" href="/resources/html/css/style2.css" media="all">
 
 </head>
-<body style="background-color: bisque">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Strona główna</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</nav>
 
+<body background="../../../resources/html/img/dashboard.jpg">
+<a href="<c:url value='/'/>" class="btn btn-info" role="button">Strona Główna</a>
 
 <div class="container-fluid padding">
 
@@ -41,8 +36,7 @@
         <div class="col-6">
             <div class="card" title="table-card">
                 <div class="card-body">
-
-                    <form:form method="post" modelAttribute="user" class="padding-small text-center">
+                    <form:form method="post" modelAttribute="user" class="padding-small text-center" >
                         <div class="form-group">
                             <form:input path="firstName" type="text" class="form-control" name="firstName" value="${user.firstName}"/>
                             <form:errors path="firstName"/>
@@ -57,21 +51,16 @@
                             <form:errors path="email"/>
                         </div>
                         <div class="form-group">
-                            <form:input path="password" type="password" class="form-control" name="password"
-                                        value="${user.password}"  placeholder="hasło"/>
+                            <form:input path="password" type="password" class="form-control" name="password" autocomplete="new-password" maxlength="8"/>
                             <form:errors path="password"/>
                         </div>
                         <button class="btn btn-color rounded-0" type="submit">Edytuj</button>
                     </form:form>
                 </div>
             </div>
-
-            </form>
         </div>
     </div>
 </div>
-</div>
-</div>
+
 </body>
 
-</html>
