@@ -31,7 +31,7 @@ public class Recip {
     @ManyToOne
     private User user;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @OneToOne
     private MealHistory mealHistory;
 
 

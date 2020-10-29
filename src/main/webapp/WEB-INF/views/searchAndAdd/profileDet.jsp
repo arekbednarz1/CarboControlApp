@@ -41,12 +41,13 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${mealsConsumedToday}" var="food" >
+                <tr>
                 <thead><tr class="schedules-content-header"> <th scope="row" class="col-1">${food.type}</th></thead>
                         <td>${food.recip.name}</td>
                         <td>${food.recip.carbs}</td>
                         <td >${food.heavy}</td>
 
-
+                </tr>
                 </c:forEach>
 
             </table>

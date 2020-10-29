@@ -15,18 +15,18 @@ public class MealsServiceDb implements MealService {
 
     @Autowired
     MealsRepository mealsRepository;
-
+    @Override
    public List<Meals> listAll(String keyword){
 
            return mealsRepository.findMealsByName(keyword);
 
    }
-
+    @Override
    public void save (Meals meal){
        mealsRepository.save(meal);
    }
 
-
+    @Override
    public Meals findById(Long id){
       return mealsRepository.findMealsById(id);
    }

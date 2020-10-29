@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Your Profile</title>
+    <title></title>
 
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -41,6 +41,7 @@
                 <tbody>
 
                 <c:forEach items="${foodConsumedToday}" var="food">
+                <tr>
 <%--                    <form:form action="/food_remove" method="post" modelAttribute="mealHistory">--%>
 <%--                        <tr class="d-flex"> <th scope="row" class="col-1">${food.id}</th>--%>
 <%--                        <form:hidden path="recip" value="${food}"/>--%>
@@ -57,7 +58,9 @@
 
 <%--                        <td><button type="submit" value="Dodaj do posiłku"/></td>--%>
 <%--                    </form:form>--%>
-                </c:forEach>
+                </tr>
+    </c:forEach>
+
                 </tbody>
             </table>
         </div>

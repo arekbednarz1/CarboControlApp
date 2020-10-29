@@ -38,25 +38,25 @@ public class UserServiceDb implements UserService {
         this.recipeRepository = recipeRepository;
         this.mealHistoryServiceDb = mealHistoryServiceDb;
     }
-
+    @Override
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
-
+    @Override
     public User findUserById(Long id) {
         return userRepository.findUserById(id);
     }
-
+    @Override
    public User findUserByPasswordBefore(String password){
         return userRepository.findUserByPasswordBefore(password);
     }
-
+    @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
-
+    @Override
    public List<Recip> foodConsumedToday(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
@@ -76,7 +76,7 @@ public class UserServiceDb implements UserService {
 
     }
 
-
+    @Override
     public List<MealHistory> mealsConsumedToday(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
@@ -95,6 +95,8 @@ public class UserServiceDb implements UserService {
         return listToReturn;
 
     }
+
+    @Override
     public String getFirstNameAndTimeOfDay(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();

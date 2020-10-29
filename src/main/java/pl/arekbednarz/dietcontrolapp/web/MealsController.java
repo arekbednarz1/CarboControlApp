@@ -19,6 +19,7 @@ import pl.arekbednarz.dietcontrolapp.service.UserServiceDb;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -119,6 +120,7 @@ public class MealsController {
 
         mealHistoryServiceDb.save(mealHistory1);
 
+        recip.setMealHistory(mealHistory1);
         recipeServiceDb.save(recip);
         mealsServiceDb.save(meals);
 
@@ -162,12 +164,11 @@ public class MealsController {
 //        return "search/listOfmeals";
 //    }
 
-    @PostMapping("addToHistory")
+    @PostMapping("/addToHistory")
     public String addRecipe(@ModelAttribute MealHistory mealHistory, Principal principal) {
         System.out.println(mealHistory.getType());
         System.out.println(mealHistory.getHeavy());
 //        System.out.println(mealHistory.getRecipe().getName());
-        System.out.println(mealHistory.getRecip().getCarbs());
 
         double carbs = mealHistory.getRecip().getCarbs()/100;
         Integer weight =mealHistory.getHeavy();
@@ -179,12 +180,18 @@ public class MealsController {
         MealHistory mealHistory1 = new MealHistory();
         Recip recip = new Recip();
 
+        mealHistory1.setType(mealHistory.getType());
+        mealHistory1.setCreated(LocalDate.now());
+        mealHistory1.setHeavy(mealHistory.getHeavy());
+        mealHistory1.setUser(user);
+
+
         recip.setCarbs((double)(Math.round(results*100))/100);
         recip.setCreated(LocalDate.now());
         recip.setHeavy(weight);
         recip.setName(mealHistory.getRecip().getName());
-        recip.setMealHistory(mealHistory1);
         recip.setUser(user);
+        mealHistory1.setRecip(recip);
 
         mealHistory1.setType(mealHistory.getType());
         mealHistory1.setCreated(LocalDate.now());
@@ -192,8 +199,10 @@ public class MealsController {
         mealHistory1.setUser(user);
         mealHistory1.setRecip(recip);
 
-        recipeServiceDb.save(recip);
         mealHistoryServiceDb.save(mealHistory1);
+        recip.setMealHistory(mealHistory1);
+        recipeServiceDb.save(recip);
+
 
         return "redirect:/profile";
 
@@ -239,6 +248,62 @@ public class MealsController {
 //            recipeService.update(recipe);
 //            return "redirect:../../recipes";
 //        }
+
+
+
+
+
+    @GetMapping("/dailyDetail")
+    public String showDaily(Model model, Principal principal){
+        User user = userServiceDb.findUserByEmail(principal.getName());
+
+
+        List<Recip> all = recipeServiceDb.findAllRecipesByUserId(user.getId());
+        String śniadanie1 ="Śniadanie";
+        String drugieSniadanie1 ="Drugie śniadanie";
+        String obiad1 = "Obiad";
+        String podwieczorek1 = "Podwieczorek";
+        String kolacja1 = "Kolacja";
+
+        List<Recip> śniadanie = new ArrayList<>();
+        List<Recip> drugieśniadanie = new ArrayList<>();
+        List<Recip> obiad = new ArrayList<>();
+        List<Recip> podwieczorek = new ArrayList<>();
+        List<Recip> kolacja = new ArrayList<>();
+
+        List<MealHistory> list= mealHistoryServiceDb.findByUserId(user.getId());
+        System.out.println(list);
+        for (Recip r : all){
+           MealHistory mealHistory= r.getMealHistory();
+           if (mealHistory.getType().toString().equals(śniadanie1)){
+                śniadanie.add(r);
+            }else if (mealHistory.getType().equals(drugieSniadanie1)){
+                drugieśniadanie.add(r);
+            }else if (mealHistory.getType()== obiad1){
+                obiad.add(r);
+            }else if (mealHistory.getType()== podwieczorek1){
+                podwieczorek.add(r);
+            }else {
+                kolacja.add(r);
+            }
+        }
+        System.out.println(all);
+
+
+        model.addAttribute("śniadanie", śniadanie);
+        model.addAttribute("drugieśniadanie", drugieśniadanie);
+        model.addAttribute("obiad", obiad);
+        model.addAttribute("podwieczorek", podwieczorek);
+        model.addAttribute("kolacja", kolacja);
+
+
+        return "searchAndAdd/mealsDetail";
+    }
+
+
+
+
+
 
 
 

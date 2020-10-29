@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Your Profile</title>
+    <title></title>
 
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -39,7 +39,9 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 <c:forEach items="${mealsList}" var="meal">
+                <tr>
                         <td><form:input path="recip.name" type="text" value="${meal.name}" readonly="true"/></td>
                 <td>
                     <form:input path="recip.carbs" type="text" value="${meal.carbs}" readonly="true"/></td>
@@ -57,9 +59,9 @@
                             </form:select>
                     </td>
                     <td><button type="submit" class="btn btn-secondary">Dodaj</button></td>
+                </tr>
+
                 </c:forEach>
-
-
                 </form:form>
                 </tbody>
             </table>

@@ -102,7 +102,7 @@
             <div class="card" title="table-card">
                 <div class="card-body">
 
-                    <form:form method="post" modelAttribute="meal">
+                    <form:form method="post" modelAttribute="meal" >
                         <div class="container center_div">
                             <div class="col-md-6 form-group">
                                 <label>Nazwa:</label>

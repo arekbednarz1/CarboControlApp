@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MealHistoryService {
+   void save (MealHistory meal);
    void delete(MealHistory mealHistory);
    Optional<MealHistory> findById(Long id);
    Optional<MealHistory> findByRecipe(Recip recip);
    List<MealHistory> findByUserId(Long id);
+
+
 }
