@@ -17,6 +17,8 @@ Zliczanie dziennego spożycia wymienników węglowodanych
 
 <img src="meals.png">
 
+<img src="detail.png">
+
 <img src="search.png">
 
 
