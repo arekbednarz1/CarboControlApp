@@ -5,7 +5,6 @@ Zliczanie dziennego spożycia wymienników węglowodanych
 - Spring Form
 - Hibernate
 - Spring Security
-- MySql
 
 <img src="register.png">
 
